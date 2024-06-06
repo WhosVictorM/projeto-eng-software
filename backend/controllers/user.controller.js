@@ -66,20 +66,36 @@ exports.userLogin = async (req, res) => {
 
 
 exports.updatePassword = async (req, res) => {
+    const { oldPassword, newPassword, confirmNewPassword } = req.body;
+    const { id } = req.params;
 
     try {
-        const { id } = req.params
+        const user = await User.findById(id);
 
-        const user = await User.findByIdAndUpdate(id, req.body)
-
-        if(!user) {
-            return res.status(404).json({message: "Product not found."})
+        if (!user) {
+            return res.status(404).json({ message: "User not found." });
         }
 
-        const updatedUser = await User.findById(id)
-        res.status(200).json(updatedUser)
+        // Verificar se a senha antiga está correta
+        const isMatch = await bcrypt.compare(oldPassword, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: "Old password is incorrect." });
+        }
+
+        // Verificar se a nova senha e a confirmação da nova senha coincidem
+        if (newPassword !== confirmNewPassword) {
+            return res.status(400).json({ message: "New passwords do not match." });
+        }
+
+        // Hash da nova senha
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(newPassword, salt);
+
+        await user.save();
+
+        res.status(200).json({ message: "Password updated successfully." });
 
     } catch (error) {
-        req.status(500).json({message: error.message})
+        res.status(500).json({ message: error.message });
     }
-}
+};

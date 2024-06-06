@@ -6,6 +6,6 @@ router.post('/register', userController.userRegister)
 
 router.post('/login', userController.userLogin)
 
-router.put('/:id', userController.updatePassword)
+router.post('/updatePassword/:id', userController.updatePassword)
 
 module.exports = router
