@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended: false}))
 
 app.use("/api/products", productsRoute)
 
-app.use("/api/users", usersRoute)
+app.use("/api/auth", usersRoute)
 
 mongoose.connect(process.env.URL_DB).then(() =>{
     console.log('MongoDB Connected.');

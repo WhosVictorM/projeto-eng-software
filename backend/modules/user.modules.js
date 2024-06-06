@@ -1,28 +1,22 @@
 const mongoose = require('mongoose')
 const generator = require('generate-password')
 
-const password = generator.generate({
-    length: 10,
-    numbers: true,
-    lowercase: true,
-    uppercase: true
-});
-
 const UserSchema = mongoose.Schema( 
     {
         username: {
             type: String,
-            required: [true, 'Please enter a Username.']
+            required: [true, 'Please enter a Username.'],
+            unique: true
         },
         password: {
             type: String,
-            required: [true, 'Please enter a Password.'],
-            default: password
+            required: [true, 'Please enter a Password.']
 
         },
         email: {
             type: String,
-            required: [true, 'Please enter an E-mail.']
+            required: [true, 'Please enter an E-mail.'],
+            unique: true
         }
     }
 )
