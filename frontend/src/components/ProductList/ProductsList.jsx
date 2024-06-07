@@ -1,7 +1,14 @@
 import React, {useState, useEffect} from "react"
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function ProductList() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate('/login');
+  };
+
     const [products, setProducts] = useState([]);
   
     useEffect(() => {
@@ -23,6 +30,8 @@ export default function ProductList() {
               </li>
               ))}
           </ul>
+
+          <button className="logout-btn" onClick={handleLogout}>Logout</button>
       </div>
     )
   }

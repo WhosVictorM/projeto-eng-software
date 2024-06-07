@@ -1,6 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 * {
     box-sizing: border-box;
-    font-family: sans-serif;
     margin: 0;
     padding: 0;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: rgb(103,109,255);
+    background: linear-gradient(45deg, rgba(103,109,255,1) 0%, rgba(124,129,255,1) 50%, rgba(151,155,255,1) 100%);
+}
+
+.l-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 2rem;
+    height: auto;
+    width: 400px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    .title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: rgb(107, 112, 255);
+    }
+
+    .sub-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        padding: 1.5rem 0 .75rem 0;
+        color: rgb(107, 112, 255);
+    }
+
+    .form {
+        padding: .78rem 0 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+
+        .l-input{
+            width: 300px;
+            border: none;
+            outline: none;
+            padding: 0.9rem;
+            border-bottom: 1px solid rgb(107, 112, 255);
+            background-color: #ffffff;
+            border-radius: .45rem;
+            
+            &::placeholder {
+                color: rgb(56, 56, 56);
+            }
+
+        }
+
+        .l-button {
+            padding: 1rem;
+            border: none;
+            border-radius: 1rem;
+            background-color: rgb(107, 112, 255);
+            color: #ffffff;
+            font-size: 1rem;
+            width: 200px;
+            cursor: pointer;
+
+            &:hover {
+                animation: 5s ease-in linear infinite;
+                background-color: rgb(65, 71, 255);
+            }
+        }
+    }
+
+    .p-register{
+        margin-top: 1rem;
+        color: rgb(65, 71, 255);
+
+        .a-register {
+            text-decoration: none;
+            color: black;
+        }
+
+    }
+
+    .error {
+        color: red;
+        margin-top: 10px;
+      }
 }
