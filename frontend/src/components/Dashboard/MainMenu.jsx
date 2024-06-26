@@ -1,16 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Sidebar from "../Sidebar/Sidebar";
+import Dashboard from "./Dashboard";
+
+
+
+export const handleLogout = (navigate) => {
+  return () => {
+    // Limpe o token no localStorage ao fazer logout
+    localStorage.removeItem('token');
+    localStorage.removeItem('welcomeMessage');
+    localStorage.removeItem('username')
+    navigate("/login");
+  };
+};
 
 export default function ProductList() {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    // Limpe o token no localStorage ao fazer logout
-    localStorage.removeItem('token');
-    localStorage.removeItem('welcomeMessage')
-    navigate("/login");
-  };
+
+  
+  
 
   const [products, setProducts] = useState([]);
 
@@ -51,21 +62,29 @@ export default function ProductList() {
     }
   }, [navigate]);
 
-  return (
-    <div>
-      <h1>Product List</h1>
-      <ul>
-        {products.map((product) => (
-          <li key={product._id}>
-            {product.name} - {product.quantity} - R${product.price}
-            <button onClick={() => handleDelete(product._id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+  
 
-      <button className="logout-btn" onClick={handleLogout}>
-        Logout
-      </button>
+  return (
+    // <div>
+    //   <h1>Product List</h1>
+    //   <ul>
+    //     {products.map((product) => (
+    //       <li key={product._id}>
+    //         {product.name} - {product.quantity} - R${product.price}
+    //         <button onClick={() => handleDelete(product._id)}>Delete</button>
+    //       </li>
+    //     ))}
+    //   </ul>
+
+    //   <button className="logout-btn" onClick={handleLogout}>
+    //     Logout
+    //   </button>
+    // </div>
+
+    <div className="dboard-container">
+      <Sidebar/>
+      <Dashboard/>
     </div>
+    
   );
 }

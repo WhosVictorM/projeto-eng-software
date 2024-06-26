@@ -29,6 +29,7 @@ export default function Login() {
         if (response.data && response.data.token) {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('welcomeMessage', response.data.message)
+          localStorage.setItem('username', response.data.name)
           
           // Redirecione para a página de dashboard
           navigate("/dashboard");
@@ -49,7 +50,7 @@ export default function Login() {
         <span className="title">Storage Management</span>
         <span className="sub-title">Login</span>
         <form className="form" onSubmit={handleLogin}>
-          <input className="l-input" type="email" placeholder="Enter your E-mail" value={email} onChange={(e) => setEmail(e.target.value)}/>
+          <input className="l-input" type="text" placeholder="Enter your E-mail" value={email} onChange={(e) => setEmail(e.target.value)}/>
           <input className="l-input" type="password" placeholder="Enter your Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
           <button className="l-button" type="submit">Log In</button>
         </form>

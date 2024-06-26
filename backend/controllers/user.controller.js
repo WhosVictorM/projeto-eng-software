@@ -56,7 +56,7 @@ exports.userLogin = async (req, res) => {
             { expiresIn: '1h' } // Token expira em 1 hora
         );
 
-        res.json({ message: `Welcome back! ${user.username}`, token: jwtToken });
+        res.json({ message: `Welcome back! ${user.username}`, token: jwtToken, name: user.username });
 
     } catch (err) {
         console.error(err.message);
